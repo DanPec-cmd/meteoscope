@@ -15,6 +15,7 @@ A modern, full-stack weather dashboard that lets you search for any city and vie
 - **✨ Weather Effects** – Animated visual effects matching the weather (rain, clouds, etc.)
 - **⚡ Optimized Performance** – React Query for caching, debounced search, memoized theme calculations
 - **📱 Responsive Design** – Works seamlessly on desktop and mobile with Tailwind CSS
+- **🐳 Docker Support** – Containerized deployment with Docker and Docker Compose
 
 ---
 
@@ -43,6 +44,10 @@ A modern, full-stack weather dashboard that lets you search for any city and vie
 - **Open-Meteo** – Free weather forecasts
 - **Open-Meteo Geocoding** – City search & coordinate lookup
 
+### DevOps
+- **Docker** – Container images for backend and frontend
+- **Docker Compose** – Multi-container orchestration
+
 ---
 
 ## 🗂️ Project Structure
@@ -65,6 +70,7 @@ meteoscope/
 │   ├── package.json            # Dependencies
 │   ├── vite.config.ts          # Vite configuration
 │   ├── tsconfig.json           # TypeScript configuration
+│   ├── Dockerfile              # Frontend container image
 │   └── index.html              # HTML entry point
 │
 ├── backend/                     # FastAPI server
@@ -74,8 +80,12 @@ meteoscope/
 │   │       ├── weather.py      # Weather data fetching (Open-Meteo)
 │   │       └── geocoding.py    # City search & geocoding
 │   ├── requirements.txt        # Python dependencies
+│   ├── Dockerfile              # Backend container image
 │   ├── .env                    # Environment variables (Open-Meteo URL)
 │   └── runthisaoo.bat          # Windows startup script
+│
+├── docker-compose.yml          # Docker Compose configuration
+└── README.md                   # This file
 ```
 
 ### Data Flow
@@ -94,8 +104,11 @@ meteoscope/
 - **Node.js 18+** (for frontend)
 - **Python 3.9+** (for backend)
 - **npm** or **yarn** (frontend package manager)
+- **Docker & Docker Compose** (for containerized deployment) - *optional*
 
-### Backend Setup
+### Option 1: Local Development Setup
+
+#### Backend Setup
 
 1. **Navigate to backend directory:**
    ```bash
@@ -139,7 +152,7 @@ meteoscope/
    runthisaoo.bat
    ```
 
-### Frontend Setup
+#### Frontend Setup
 
 1. **Navigate to frontend directory:**
    ```bash
@@ -166,6 +179,35 @@ meteoscope/
    ```bash
    npm run preview
    ```
+
+### Option 2: Docker Compose Deployment
+
+**Quick start with a single command:**
+
+```bash
+docker-compose up --build
+```
+
+**What this does:**
+- Builds the backend Docker image (FastAPI on port 8000)
+- Builds the frontend Docker image (React on port 3000)
+- Sets up networking between services
+- Frontend automatically depends on backend being ready
+
+**Access the application:**
+- Frontend: `http://localhost:3000`
+- Backend API: `http://localhost:8000`
+- API docs: `http://localhost:8000/docs`
+
+**Stop containers:**
+```bash
+docker-compose down
+```
+
+**View logs:**
+```bash
+docker-compose logs -f
+```
 
 ---
 
@@ -263,6 +305,13 @@ uvicorn app.main:app --reload    # Run with auto-reload
 python -m pip install -r requirements.txt  # Install deps
 ```
 
+### Docker
+```bash
+docker-compose up --build        # Build and start containers
+docker-compose down              # Stop and remove containers
+docker-compose logs -f           # View container logs
+```
+
 ---
 
 ## 📝 License
@@ -288,6 +337,8 @@ Contributions are welcome! Feel free to:
 - [React 19 Docs](https://react.dev/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Vite Guide](https://vitejs.dev/)
+- [Docker Docs](https://docs.docker.com/)
+- [Docker Compose Docs](https://docs.docker.com/compose/)
 
 ---
 
