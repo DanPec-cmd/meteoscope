@@ -1,52 +1,53 @@
 # 🌦️ Meteoscope
 
-A modern, full-stack weather dashboard that lets you search for any city and view current conditions, hourly forecasts, and 7-day forecasts with beautiful weather-themed visuals and animations.
+A modern, full-stack weather dashboard built with **React + TypeScript** (frontend) and **FastAPI + Python** (backend). Search for any city worldwide and view real-time weather conditions, hourly forecasts, and 7-day forecasts with beautiful, weather-responsive animations.
 
-**Built with:** React + TypeScript + Vite (frontend) • FastAPI + Python (backend) • Open-Meteo API (weather data)
+**Live Demo:** [meteoscope.vercel.app](https://meteoscope.vercel.app)
 
 ---
 
 ## 🎯 Features
 
 - **🔍 City Search** – Debounced search with geocoding to find any city worldwide
-- **🌡️ Real-time Weather** – Current temperature, weather code, and wind speed
+- **🌡️ Real-time Weather** – Current temperature, weather conditions, and wind speed
 - **📊 Forecast Data** – Hourly and 7-day weather forecasts
-- **🎨 Dynamic Theming** – Weather-responsive UI that adapts to conditions
-- **✨ Weather Effects** – Animated visual effects matching the weather (rain, clouds, etc.)
-- **⚡ Optimized Performance** – React Query for caching, debounced search, memoized theme calculations
-- **📱 Responsive Design** – Works seamlessly on desktop and mobile with Tailwind CSS
-- **🐳 Docker Support** – Containerized deployment with Docker and Docker Compose
+- **🎨 Dynamic Weather Theming** – UI adapts to current weather conditions
+- **✨ Animated Weather Effects** – Visual effects matching weather (rain, clouds, snow, etc.)
+- **⚡ Performance Optimized** – React Query caching, debounced search, memoized calculations
+- **📱 Fully Responsive** – Desktop and mobile support with Tailwind CSS
+- **🐳 Docker Ready** – Full containerization with Docker Compose
 
 ---
 
 ## 📦 Tech Stack
 
 ### Frontend
-- **React 19** – UI library with hooks
+- **React 19** – Latest UI library with hooks
 - **TypeScript 6.0** – Type-safe development
 - **Vite 8** – Lightning-fast build tool with HMR
 - **Tailwind CSS 4** – Utility-first styling
 - **React Router 7** – Client-side routing
-- **TanStack React Query 5** – Data fetching and caching
-- **Recharts 3** – Chart visualization
-- **Axios** – HTTP client
-- **Lucide React** – Icon library
+- **TanStack React Query 5** – Advanced data fetching and caching
+- **Recharts 3** – Interactive chart visualizations
+- **Axios** – HTTP client for API requests
+- **Lucide React** – Beautiful icon library
 
 ### Backend
-- **FastAPI 0.139** – Modern async web framework
-- **Python 3.x** – Language runtime
-- **Uvicorn** – ASGI server
-- **httpx** – Async HTTP client
-- **Pydantic** – Data validation
-- **python-dotenv** – Environment configuration
+- **FastAPI 0.139** – Modern async Python web framework
+- **Python 3.11** – Runtime (slim image for Docker)
+- **Uvicorn 0.49** – ASGI application server
+- **Pydantic 2.13** – Data validation and serialization
+- **httpx 0.28** – Async HTTP client
+- **python-dotenv 1.2** – Environment configuration
 
-### APIs
-- **Open-Meteo** – Free weather forecasts
-- **Open-Meteo Geocoding** – City search & coordinate lookup
+### External APIs
+- **Open-Meteo Weather** – Free, real-time weather forecasts
+- **Open-Meteo Geocoding** – City search and coordinate lookup
 
 ### DevOps
-- **Docker** – Container images for backend and frontend
+- **Docker** – Containerized deployment
 - **Docker Compose** – Multi-container orchestration
+- **Nginx** – Reverse proxy and static file serving
 
 ---
 
@@ -54,166 +55,92 @@ A modern, full-stack weather dashboard that lets you search for any city and vie
 
 ```
 meteoscope/
-├── frontend/                    # React + TypeScript application
+├── frontend/                   # React + TypeScript application
 │   ├── src/
-│   │   ├── App.tsx             # Main app component with search & state
-│   │   ├── components/         # Reusable UI components
-│   │   │   └── weather/        # Weather-specific components (HeroCard, WeatherFX)
-│   │   ├── hooks/              # Custom React hooks
-│   │   ├── services/           # API client (axios instance)
-│   │   ├── theme/              # Weather theme utilities
-│   │   ├── utils/              # Helper functions
-│   │   ├── assets/             # Images, icons
-│   │   ├── App.css             # Global styles
-│   │   ├── index.css           # Base styles
-│   │   └── main.tsx            # Entry point
-│   ├── package.json            # Dependencies
-│   ├── vite.config.ts          # Vite configuration
-│   ├── tsconfig.json           # TypeScript configuration
-│   ├── Dockerfile              # Frontend container image
-│   └── index.html              # HTML entry point
+│   │   ├── App.tsx            # Main app component with search & state
+│   │   ├── components/        # Reusable UI components
+│   │   ├── hooks/             # Custom React hooks
+│   │   ├── services/          # API client (Axios instance)
+│   │   ├── theme/             # Weather theming utilities
+│   │   ├── utils/             # Helper functions
+│   │   ├── assets/            # Images and icons
+│   │   ├── App.css            # Global styles
+│   │   ├── index.css          # Base styles
+│   │   └── main.tsx           # Entry point
+│   ├── package.json           # Dependencies
+│   ├── vite.config.ts         # Vite configuration
+│   ├── tsconfig.json          # TypeScript configuration
+│   ├── Dockerfile             # Container image
+│   └── index.html             # HTML entry point
 │
-├── backend/                     # FastAPI server
+├── backend/                    # FastAPI server
 │   ├── app/
-│   │   ├── main.py             # FastAPI app setup, CORS, routes
-│   │   └── services/           # Business logic
-│   │       ├── weather.py      # Weather data fetching (Open-Meteo)
-│   │       └── geocoding.py    # City search & geocoding
-│   ├── requirements.txt        # Python dependencies
-│   ├── Dockerfile              # Backend container image
-│   ├── .env                    # Environment variables (Open-Meteo URL)
-│   └── runthisaoo.bat          # Windows startup script
+│   │   ├── main.py            # FastAPI app setup, CORS, routes
+│   │   └── services/          # Business logic
+│   │       ├── weather.py     # Weather data fetching
+│   │       └── geocoding.py   # City search & geocoding
+│   ├── requirements.txt       # Python dependencies
+│   ├── Dockerfile             # Container image
+│   ├── .env                   # Environment variables
+│   └── runthisaoo.bat         # Windows startup script
 │
-├── docker-compose.yml          # Docker Compose configuration
-└── README.md                   # This file
+├── nginx/                      # Nginx configuration
+├── docker-compose.yml         # Docker Compose configuration
+└── README.md                  # This file
 ```
-
-### Data Flow
-1. **Frontend** → User searches for a city name
-2. **Debounced search** (400ms) triggers backend `/search` endpoint
-3. **Backend** queries Open-Meteo Geocoding API → returns city coordinates
-4. **Frontend** displays dropdown with search results
-5. **On click** → Backend `/weather` endpoint fetches current + forecast data
-6. **Frontend** applies theme based on weather code → renders dashboard with animations
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Quick Start
 
-### Prerequisites
-- **Node.js 18+** (for frontend)
-- **Python 3.9+** (for backend)
-- **npm** or **yarn** (frontend package manager)
-- **Docker & Docker Compose** (for containerized deployment) - *optional*
-
-### Option 1: Local Development Setup
-
-#### Backend Setup
-
-1. **Navigate to backend directory:**
-   ```bash
-   cd backend
-   ```
-
-2. **Create a virtual environment:**
-   ```bash
-   python -m venv .venv
-   ```
-
-3. **Activate the virtual environment:**
-   - **Windows:**
-     ```bash
-     .venv\Scripts\activate
-     ```
-   - **macOS/Linux:**
-     ```bash
-     source .venv/bin/activate
-     ```
-
-4. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-5. **Set up environment variables:**
-   ```bash
-   # .env file (already configured)
-   OPEN_METEO_URL=https://api.open-meteo.com/v1/forecast
-   ```
-
-6. **Run the server:**
-   ```bash
-   uvicorn app.main:app --reload
-   ```
-   Server runs on `http://localhost:8000`
-
-   **Alternative (Windows batch file):**
-   ```bash
-   runthisaoo.bat
-   ```
-
-#### Frontend Setup
-
-1. **Navigate to frontend directory:**
-   ```bash
-   cd frontend
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Start development server:**
-   ```bash
-   npm run dev
-   ```
-   Frontend runs on `http://localhost:5173`
-
-4. **Build for production:**
-   ```bash
-   npm run build
-   ```
-
-5. **Preview production build:**
-   ```bash
-   npm run preview
-   ```
-
-### Option 2: Docker Compose Deployment
-
-**Quick start with a single command:**
+### Option 1: Docker Compose (Recommended)
 
 ```bash
+git clone https://github.com/DanPec-cmd/meteoscope.git
+cd meteoscope
 docker-compose up --build
 ```
 
-**What this does:**
-- Builds the backend Docker image (FastAPI on port 8000)
-- Builds the frontend Docker image (React on port 3000)
-- Sets up networking between services
-- Frontend automatically depends on backend being ready
+Then open:
+- **Frontend:** http://localhost:3000
+- **Backend API:** http://localhost:8000
+- **API Docs:** http://localhost:8000/docs
 
-**Access the application:**
-- Frontend: `http://localhost:3000`
-- Backend API: `http://localhost:8000`
-- API docs: `http://localhost:8000/docs`
+### Option 2: Local Development
 
-**Stop containers:**
+#### Backend Setup
+
 ```bash
-docker-compose down
+cd backend
+python -m venv .venv
+
+# On Windows:
+.venv\Scripts\activate
+
+# On macOS/Linux:
+source .venv/bin/activate
+
+pip install -r requirements.txt
+uvicorn app.main:app --reload
 ```
 
-**View logs:**
+Backend runs on `http://localhost:8000`
+
+#### Frontend Setup
+
 ```bash
-docker-compose logs -f
+cd frontend
+npm install
+npm run dev
 ```
+
+Frontend runs on `http://localhost:5173`
 
 ---
 
 ## 🔌 API Endpoints
 
-### Weather Endpoint
+### Get Weather Data
 ```
 GET /weather?lat={latitude}&lon={longitude}
 ```
@@ -225,9 +152,9 @@ GET /weather?lat={latitude}&lon={longitude}
   "weathercode": 0,
   "windspeed": 5.2,
   "hourly": {
-    "time": ["2026-07-05T00:00", "2026-07-05T01:00", ...],
-    "temperature": [20.1, 19.8, ...],
-    "weathercode": [0, 1, ...]
+    "time": ["2026-07-05T00:00", ...],
+    "temperature": [20.1, ...],
+    "weathercode": [0, ...]
   },
   "daily": {
     "time": ["2026-07-05", ...],
@@ -238,7 +165,7 @@ GET /weather?lat={latitude}&lon={longitude}
 }
 ```
 
-### Search Endpoint
+### Search Cities
 ```
 GET /search?city={city_name}
 ```
@@ -248,7 +175,7 @@ GET /search?city={city_name}
 [
   {
     "name": "New York",
-    "country": "United States, New York",
+    "country": "United States",
     "lat": 40.7128,
     "lon": -74.0060
   },
@@ -258,40 +185,9 @@ GET /search?city={city_name}
 
 ---
 
-## 🎨 Key Components
+## 📝 Development
 
-### Frontend
-- **App.tsx** – Main app state management, search logic, weather theme selection
-- **HeroCard** – Displays current weather and detailed forecast data
-- **WeatherFX** – Renders weather-specific animations and effects
-- **weatherTheme** – Utility that returns colors/backgrounds based on weather code
-
-### Backend
-- **main.py** – FastAPI app initialization with CORS middleware configured for `localhost:5173`
-- **weather.py** – Async weather data fetching and formatting
-- **geocoding.py** – City search with error handling and data formatting
-
----
-
-## 💡 Development Notes
-
-### Performance Optimizations
-- ✅ **Debounced search** – 400ms delay prevents excessive API calls
-- ✅ **Memoized theme** – `useMemo` prevents unnecessary recalculations
-- ✅ **React Query** – Caches weather data to minimize refetches
-- ✅ **CORS middleware** – Configured on backend for frontend origin
-
-### Error Handling
-- Network timeouts (10s) handled gracefully
-- Malformed API responses caught and logged
-- Whitespace-only queries rejected at source
-- Safe fallback data mapping with `.get()` to avoid KeyErrors
-
----
-
-## 🧪 Scripts
-
-### Frontend
+### Frontend Scripts
 ```bash
 npm run dev       # Start dev server with HMR
 npm run build     # Build TypeScript + Vite bundle
@@ -299,46 +195,81 @@ npm run lint      # Run ESLint checks
 npm run preview   # Preview production build locally
 ```
 
-### Backend
+### Backend Scripts
 ```bash
-uvicorn app.main:app --reload    # Run with auto-reload
-python -m pip install -r requirements.txt  # Install deps
+uvicorn app.main:app --reload              # Run with auto-reload
+python -m pip install -r requirements.txt  # Install dependencies
 ```
 
-### Docker
+### Docker Commands
 ```bash
-docker-compose up --build        # Build and start containers
-docker-compose down              # Stop and remove containers
-docker-compose logs -f           # View container logs
+docker-compose up --build      # Build and start all services
+docker-compose down            # Stop and remove containers
+docker-compose logs -f         # View live logs
+docker-compose ps              # List running containers
 ```
 
 ---
 
-## 📝 License
+## 🎨 Key Components
 
-This project is open source. Feel free to fork, modify, and use!
+### Frontend
+- **App.tsx** – Main component managing search, state, and weather theme
+- **HeroCard** – Displays current weather and forecast details
+- **WeatherFX** – Renders animated weather effects
+- **weatherTheme** – Utility returning colors/backgrounds based on weather conditions
+
+### Backend
+- **main.py** – FastAPI setup with CORS and route handlers
+- **weather.py** – Fetches and formats weather data from Open-Meteo
+- **geocoding.py** – Handles city search with error handling
+
+---
+
+## ⚙️ Configuration
+
+### Environment Variables
+
+**Backend (.env):**
+```
+OPEN_METEO_URL=https://api.open-meteo.com/v1/forecast
+```
+
+**Frontend:** Configured via Vite environment (uses `VITE_API_URL` if needed)
+
+---
+
+## 🧪 Testing & Quality
+
+- **ESLint** – Code linting for consistent style
+- **TypeScript** – Static type checking
+- **Pydantic** – Backend data validation
+
+---
+
+## 📚 Resources
+
+- [Open-Meteo API](https://open-meteo.com/)
+- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [React 19 Docs](https://react.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Vite Guide](https://vitejs.dev/)
+- [Docker Documentation](https://docs.docker.com/)
 
 ---
 
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to:
-- Report bugs via issues
+- Report bugs via [GitHub Issues](https://github.com/DanPec-cmd/meteoscope/issues)
 - Suggest features
 - Submit pull requests
 
 ---
 
-## 🔗 Resources
+## 📄 License
 
-- [Open-Meteo Weather API](https://open-meteo.com/)
-- [Open-Meteo Geocoding](https://open-meteo.com/en/docs/geocoding-api)
-- [FastAPI Docs](https://fastapi.tiangolo.com/)
-- [React 19 Docs](https://react.dev/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Vite Guide](https://vitejs.dev/)
-- [Docker Docs](https://docs.docker.com/)
-- [Docker Compose Docs](https://docs.docker.com/compose/)
+Open source project. Feel free to fork, modify, and use!
 
 ---
 
