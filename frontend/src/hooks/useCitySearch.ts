@@ -5,11 +5,17 @@ export function useCitySearch() {
   const [results, setResults] = useState<any[]>([]);
 
   const search = async (name: string) => {
-    const res = await api.get("/search-city", {
-      params: { name }
-    });
+    try {
+      const res = await api.get("/search-city", {
+        params: { name }
+      });
 
-    setResults(res.data.results || []);
+      // ✅ backend returns ARRAY directly
+      setResults(Array.isArray(res.data) ? res.data : []);
+    } catch (err) {
+      console.error("City search failed:", err);
+      setResults([]);
+    }
   };
 
   return { results, search };
