@@ -82,7 +82,7 @@ meteoscope/
 │   ├── requirements.txt       # Python dependencies
 │   ├── Dockerfile             # Container image
 │   ├── .env                   # Environment variables
-│   └── runthisaoo.bat         # Windows startup script
+│   └── start-backend.bat         # Windows startup script
 │
 ├── nginx/                      # Nginx configuration
 ├── docker-compose.yml         # Docker Compose configuration
