@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #050816;
+  color: white;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+/* ================= CLOUDS ================= */
+
+.cloud {
+  position: absolute;
+  width: 200px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  filter: blur(2px);
+  animation: floatClouds 60s linear infinite;
+}
+
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+}
+
+.cloud::before {
+  width: 80px;
+  height: 80px;
+  top: -30px;
+  left: 20px;
+}
+
+.cloud::after {
+  width: 100px;
+  height: 100px;
+  top: -40px;
+  right: 20px;
+}
+
+.cloud1 {
+  top: 20%;
+  left: -200px;
+}
+
+.cloud2 {
+  top: 50%;
+  left: -300px;
+  animation-duration: 90s;
+  opacity: 0.6;
+}
+
+@keyframes floatClouds {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(200vw);
+  }
+}
+
+/* ================= RAIN ================= */
+
+.rain {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* create multiple rain drops */
+.rain::before,
+.rain::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  width: 2px;
+  height: 200%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  animation: rainFall 0.6s linear infinite;
+}
+
+/* layer 1 */
+.rain::before {
+  left: 20%;
+  animation-duration: 0.5s;
+  opacity: 0.5;
+}
+
+/* layer 2 */
+.rain::after {
+  left: 70%;
+  animation-duration: 0.7s;
+  opacity: 0.3;
+}
+
+@keyframes rainFall {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+/* ================= FOG ================= */
+
+.fog {
+  position: absolute;
+  inset: 0;
+  background: rgba(200, 200, 200, 0.08);
+  filter: blur(40px);
+  animation: fogMove 10s ease-in-out infinite alternate;
+}
+
+@keyframes fogMove {
+  from {
+    transform: translateX(-5%);
+  }
+  to {
+    transform: translateX(5%);
+  }
+}
