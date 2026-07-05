@@ -6,11 +6,10 @@ export function useCitySearch() {
 
   const search = async (name: string) => {
     try {
-      const res = await api.get("/search-city", {
-        params: { name }
+      const res = await api.get("/search", {
+        params: { city: name }
       });
 
-      // ✅ backend returns ARRAY directly
       setResults(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
       console.error("City search failed:", err);
