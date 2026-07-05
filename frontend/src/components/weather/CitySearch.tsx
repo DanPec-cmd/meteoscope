@@ -34,24 +34,29 @@ export default function CitySearch({
     onSelect(city);
   };
 
+  // Handles the Android keyboard "Search" button press natively
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault(); // Safely blocks Android from launching external intents
+    
+    if (results.length > 0) {
+      handleSelect(results[0]);
+    }
+  };
+
   return (
     <div className="mb-6">
-      {/* INPUT */}
-      <input
-        className="w-full rounded-xl bg-white/5 p-3 text-white outline-none"
-        placeholder="Search city..."
-        value={query}
-        autoComplete="off"
-        onChange={(e) => handleChange(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            e.preventDefault(); // prevents Android "open app" intent triggers
-            if (results.length > 0) {
-              handleSelect(results[0]);
-            }
-          }
-        }}
-      />
+      {/* WRAPPED IN A FORM */}
+      <form action="." onSubmit={handleSubmit}>
+        <input
+          type="search" // Tells mobile keyboards to show the "Search" key
+          className="w-full rounded-xl bg-white/5 p-3 text-white outline-none"
+          placeholder="Search city..."
+          value={query}
+          autoComplete="off"
+          onChange={(e) => handleChange(e.target.value)}
+          // onKeyDown is removed because onSubmit handles the Enter/Search key now
+        />
+      </form>
 
       {/* DROPDOWN */}
       <div className="mt-2 space-y-2">
